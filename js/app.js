@@ -14,34 +14,35 @@ const navigateToSection = (section) => {
 
 // Set sections as active
 const makeActive = () => {
-  for (const section of sections) {
-    const box = section.getBoundingClientRect();
-    // console.log(section.id + ":::: ", box);
+  for (let i = 0; i < sections.length; i++) {
+    const box = sections[i].getBoundingClientRect();
+    const navLink = navList.querySelector(`[data-index="${i}"]`);
 
     if (box.top <= 200 && box.bottom >= 200) {
       //apply active state on current section and corresponding Nav link
-      section.classList.add("active");
+      sections[i].classList.add("active");
+      navLink.classList.add("active_link");
     } else {
       //Remove active state from other section and corresponding Nav link
-      section.classList.remove("active");
+      sections[i].classList.remove("active");
+      navLink.classList.remove("active_link");
     }
   }
 };
 
 // Build menu
 const buildNav = () => {
-  console.log("buildNav navList", navList);
-
   // Iterate over sectionsData
-  sections.forEach((section) => {
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i];
     const navTitle = section.dataset["nav"];
-    console.dir(section);
 
     // Create list item
     const listItem = document.createElement("li");
     const navLink = document.createElement("a");
 
-    navLink.classList.add("menu__link");
+    navLink.classList.add("nav_link");
+    navLink.dataset["index"] = i;
 
     navLink.textContent = navTitle;
 
@@ -54,7 +55,7 @@ const buildNav = () => {
 
     // Append list item to nav list
     navList.appendChild(listItem);
-  });
+  }
 };
 
 document.addEventListener("scroll", (e) => {

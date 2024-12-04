@@ -71,7 +71,7 @@ section {
   display: inline-block;
 }
 
-.nav_menu .menu__link {
+.nav_menu .nav_link {
   display: block;
   padding: 1em;
   font-weight: bold;
@@ -79,11 +79,16 @@ section {
   color: #000;
 }
 
-.nav_menu .menu__link:hover {
+.nav_menu .nav_link:hover {
   cursor: pointer;
   background: #333;
   color: #fff;
   transition: ease 0.3s all;
+}
+
+.nav_menu .active_link {
+  background: #333;
+  color: #fff;
 }
 
 /* Header Styles */
